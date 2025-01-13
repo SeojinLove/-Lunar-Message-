@@ -1,1 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="icon" href="https://i.imgur.com/dnYFRk4.png">
+    <link rel="shortcut icon" href="https://i.imgur.com/dnYFRk4.png" type="image/x-icon">
+      <!-- Balises spécifiques à iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes"> <!-- Activer le mode web app -->
+  <meta name="apple-mobile-web-app-title" content="☾Lunar ✧"> <!-- Nom de l'app sur iOS -->
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="https://i.imgur.com/dnYFRk4.png">
+      <!-- Windows Tiles (Microsoft) -->
+  <meta name="msapplication-TileColor" content="#000000">
+  <meta name="msapplication-TileImage" content="https://i.imgur.com/dnYFRk4.png">
+  <title>☾Lunar Message ✧</title>
+  <style>
+    /* Styles généraux */
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      color: #7256FE;
+      background-color: #000;
+      overflow-x: hidden;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      height: 50px;
+      background: #000;
+      padding: 0 10px;
+      border-bottom: 1px solid #444;
+      z-index: 1000;
+    }
+    header img {
+      height: 30px;
+      margin-left: 5px;
+    }
+    header h1 {
+      font-size: 18px;
+      color: #7256FE;
+      margin-right: 34px;
+    }
+    .image-button {
+  display: inline-block; /* Assure que l'image se comporte comme un élément en ligne */
+  text-decoration: none; /* Enlève la soulignure du lien */
+}
 
+.image-button img {
+  pointer-events: all; /* Permet à l'image de répondre aux clics */
+  cursor: pointer; /* Change le curseur pour indiquer que l'image est cliquable */
+}
+.text-button {
+  text-decoration: none; /* Enlève la soulignure du lien */
+  color: inherit; /* Conserve la couleur du texte parent */
+  cursor: pointer; /* Change le curseur pour indiquer que c'est cliquable */
+}
+
+.text-button:hover {
+  color: #1F0032; /* Optionnel, change la couleur du texte au survol */
+}
+    .container {
+      padding: 70px 20px 20px;
+      text-align: center;
+    }
+    .oval-input {
+      width: 100%;
+      max-width: 400px;
+      padding: 15px;
+      border: 2px solid #7256FE;
+      border-radius: 25px;
+      background: rgba(114, 86, 254, 0.1);
+      color: #7256FE;
+      font-size: 16px;
+      margin-bottom: 20px;
+      outline: none;
+    }
+    .button {
+      padding: 10px 20px;
+      background: #7256FE;
+      color: #fff;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      margin: 5px;
+    }
+    .button:hover {
+      background: #6048d4;
+    }
+    .preview {
+      margin-top: 20px;
+      border: 1px solid #444;
+      border-radius: 10px;
+      background: rgba(114, 86, 254, 0.1);
+      padding: 10px;
+      text-align: left;
+      color: #ccc;
+      font-family: monospace;
+      font-size: 0.9em;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 12px;
+    }
+    footer .link, footer .link2 {
+      text-decoration: none;
+      color: pink;
+    }
+    footer .link2 {
+      color: cyan;
+    }
+    footer .title {
+      color: orange;
+    }
+  /* Animation des étoiles dispersées */
+  
+  .stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+  }
+  .star {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: twinkle 3s infinite ease-in-out alternate;
+  }
+  @keyframes twinkle {
+    0% {
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  /* Style global du bouton */
+  .letters-dictionary-button {
+    display: inline-block;
+    background-color: #9A0032;
+    color: white;
+    padding: 2px 4px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 30px;
+    text-decoration: none;
+    text-align: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-top: 0;
+  }
+
+  /* Effet de survol */
+  .letters-dictionary-button:hover {
+    background-color: #550032;
+    transform: translateY(-2px); /* Légère élévation du bouton lors du survol */
+    text-decoration: none;
+  }
+
+  /* Effet de focus */
+  .letters-dictionary-button:focus {
+    outline: none;
+    box-shadow: 0px 0px 10px rgba(114, 86, 254, 0.8);
+    text-decoration: none;
+  }
+
+  /* Style de texte du bouton */
+  .letters-dictionary-button span {
+    font-family: 'Arial', sans-serif;
+    letter-spacing: 1px;
+    text-decoration: none;
+  }
+
+</style>
+</head>
+<body>
+  <header>
+  <a href="official-site.html" class="text-button">
+    <img src="https://i.imgur.com/dnYFRk4.png" alt="Icon"></a>
+<!-- Bouton Letters Dictionary juste après le header -->
+<a href="official-letters-board.html" class="letters-dictionary-button">
+  <span>Letters Board</span>
+</a>
+    <h1><a href="official-site.html" class="text-button">☾Lunar Message ✧</a></h1>
+  </header>
+  <div class="stars">
+  <!-- Quelques étoiles dispersées -->
+  <div class="star" style="top: 10%; left: 15%; animation-delay: 0s;"></div>
+  <div class="star" style="top: 30%; left: 40%; animation-delay: 1s;"></div>
+  <div class="star" style="top: 50%; left: 70%; animation-delay: 2s;"></div>
+  <div class="star" style="top: 80%; left: 20%; animation-delay: 1.5s;"></div>
+  <div class="star" style="top: 60%; left: 80%; animation-delay: 0.5s;"></div>
+  <div class="star" style="top: 10%; left: 90%; animation-delay: 0s;"></div>
+  <div class="star" style="top: 30%; left: 100%; animation-delay: 1s;"></div>
+  <div class="star" style="top: 50%; left: 12%; animation-delay: 2s;"></div>
+  <div class="star" style="top: 80%; left: 30%; animation-delay: 1.5s;"></div>
+  <div class="star" style="top: 60%; left: 60%; animation-delay: 0.5s;"></div>
+  
+  <div class="star" style="top: 20%; left: 18%; animation-delay: 0s;"></div>
+  <div class="star" style="top: 40%; left: 24%; animation-delay: 1s;"></div>
+  <div class="star" style="top: 60%; left: 30%; animation-delay: 2s;"></div>
+  <div class="star" style="top: 95%; left: 29%; animation-delay: 1.5s;"></div>
+  <div class="star" style="top: 55%; left: 95%; animation-delay: 0.5s;"></div>
+  <div class="star" style="top: 10%; left: 75%; animation-delay: 0s;"></div>
+  <div class="star" style="top: 34%; left: 64%; animation-delay: 1s;"></div>
+  <div class="star" style="top: 23%; left: 38%; animation-delay: 2s;"></div>
+  <div class="star" style="top: 100%; left: 3%; animation-delay: 1.5s;"></div>
+  <div class="star" style="top: 75%; left: 55%; animation-delay: 0.5s;"></div>
+</div>
+
+  <!-- Page principale -->
+  <div class="container">
+    <button class="button" onclick="navigateTo('generate')">Create a Secret Message</button>
+    <button class="button" onclick="navigateTo('decode')">Decode</button>
+  </div>
+
+  <!-- Page Generate -->
+  <div id="generate" class="container" style="display:none;">
+    <input type="text" id="generateInput" class="oval-input" placeholder="Enter your message">
+    <button class="button" onclick="generateSecret()">Generate</button>
+    <button class="button" onclick="copyText('preview')">Copy</button>
+    <div class="preview">
+      <h3>Live Preview</h3>
+      <div id="preview"></div>
+    </div>
+    <button class="button" onclick="share()">Share</button>
+  </div>
+
+  <!-- Page Decode -->
+  <div id="decode" class="container" style="display:none;">
+    <input type="text" id="decodeInput" class="oval-input" placeholder="Enter encoded message">
+    <button class="button" onclick="decodeSecret()">Decode</button>
+    <button class="button" onclick="copyText('decodedPreview')">Copy</button>
+    <div class="preview">
+      <h3>Live Preview</h3>
+      <div id="decodedPreview"></div>
+    </div>
+  </div>
+
+  <footer>
+    <strong>
+      &copy; 2025 <a class="title">☾Lunar Message ✧</a> website has been created by 
+      <a class="link" href="https://github.com/SeojinLove">Seojin Yoon</a> Idea 💡 created by 
+      <a class="link2" href="https://routinehub.co/user/Next.Gen.Innovators">Next.Gen.Innovators</a>.
+    </strong>
+  </footer>
+
+  <script>
+// Mapping des caractères pour l'encodage et le décodage
+const mapping = {
+  "G": "☾⋆⁺₊", "U": "˚✩☽˚", "H": "❀⊹", "V": "✦⋆", "I": "⋆꙳✧༚",
+  "W": "✩˚⋆", "J": "𓂃⊹˚", "X": "｡⋆༺𓆃༻⋆｡", "K": "⋆⭒˚｡⋆", "Y": "☽⊹𓂃",
+  "L": "✦⊹✦", "Z": "⋆.ೃ࿔*:･", "M": "⊹₊˚｡˚", "N": "𓆩♡𓆪", "A": "∘◦ ✧ ◦∘",
+  "O": "❋˚｡⋆", "B": "✧.☽.*✧", "P": "⊹˚₊˚", "C": "⋆｡ﾟ☁︎｡⋆", "Q": "✧･ﾟ",
+  "D": "｡ﾟﾟ･｡･ﾟﾟ｡", "R": "⋆༚✧༄", "E": "♡‧₊˚✦", "S": "⊹₊☽", "F": "✦₊˚⊹",
+  "T": "𓇬⋆⁺₊"
+};
+
+const reverseMapping = Object.fromEntries(Object.entries(mapping).map(([k, v]) => [v, k]));
+
+function navigateTo(page) {
+  document.querySelectorAll('.container').forEach(el => el.style.display = 'none');
+  document.getElementById(page).style.display = 'block';
+}
+
+// Fonction d'encodage
+function generateSecret() {
+  const input = document.getElementById('generateInput').value.toUpperCase();
+  // Remplacer les espaces par %%
+  const encoded = Array.from(input).map(char => mapping[char] || (char === ' ' ? '%%' : char)).join(' ');
+  document.getElementById('preview').innerText = encoded;
+}
+
+// Fonction de décodage
+function decodeSecret() {
+  const input = document.getElementById('decodeInput').value.split(' ');
+  // Remplacer %% par des espaces et décoder
+  const decoded = input.map(symbol => reverseMapping[symbol] || (symbol === '%%' ? ' ' : symbol)).join('');
+  document.getElementById('decodedPreview').innerText = decoded.charAt(0).toUpperCase() + decoded.slice(1);
+}
+
+// Fonction pour copier le texte dans le presse-papier
+function copyText(id) {
+  const text = document.getElementById(id).innerText;
+  navigator.clipboard.writeText(text);
+  alert('Copied to clipboard!');
+}
+
+// Fonction de partage
+function share() {
+  const secretMessage = document.getElementById('preview').innerText;
+  const message = `Hey here’s a secret message encoded by Seojin Yoon on GitHub try to find the message by decoding it! If you still don’t know go check the website of Seojin Yoon: https://seojinlove.github.io/-Lunar-Message-/official-site.html. Here's the link to get the symbols dictionary: https://seojinlove.github.io/-Lunar-Message-/official-letters-dictionary.html
+  
+   This is the secret message:\n\n${secretMessage}`;
+  if (navigator.share) {
+    navigator.share({ text: message });
+  } else {
+    alert('Sharing not supported on this device.');
+  }
+}
+  </script>
+</body>
+</html>
